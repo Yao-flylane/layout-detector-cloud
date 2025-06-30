@@ -1,0 +1,24 @@
+version: '3.8'
+
+services:
+  layout-detector:
+    build: .
+    volumes:
+      # Mount local code for development (exclude model file to avoid conflicts)
+      - .:/app
+      - /app/doclayout_yolo_docstructbench_imgsz1024.pt
+    environment:
+      - INPUT_BUCKET=${INPUT_BUCKET}
+      - INPUT_KEY=${INPUT_KEY}
+      - OUTPUT_BUCKET=${OUTPUT_BUCKET}
+      - DYNAMODB_TABLE=${DYNAMODB_TABLE}
+      - DOCUMENT_UUID=${DOCUMENT_UUID}
+      - APPSYNC_API_URL=${APPSYNC_API_URL}
+      - APPSYNC_API_KEY=${APPSYNC_API_KEY}
+      - AWS_ACCESS_KEY_ID=${AWS_ACCESS_KEY_ID}
+      - AWS_SECRET_ACCESS_KEY=${AWS_SECRET_ACCESS_KEY}
+      - AWS_DEFAULT_REGION=${AWS_DEFAULT_REGION:-us-east-1}
+    # For development, you can override the command
+    # command: ["python", "-u", "run_task.py"]
+    # Or run interactively
+    # command: ["bash"] 

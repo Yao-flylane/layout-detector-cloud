@@ -7,3 +7,6 @@ PyMuPDF
 doclayout_yolo
 huggingface_hub
 python-multipart
+boto3
+requests
+aiohttp
